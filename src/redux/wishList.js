@@ -55,7 +55,7 @@ export const handleRemoveGame = () => (dispatch, getState) => {
   const { wishList } = getState()[wishList];
   dispatch({
     type: actions.REMOVE_GAME_FROM_WISH_LIST,
-    payload: wishList.filter((x) => x.id !== action.payload.id),
+    payload: wishList.filter((item) => item.id !== action.payload.id),
   });
 };
 
