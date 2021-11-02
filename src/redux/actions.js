@@ -25,23 +25,21 @@ export const handleFetchList = () => async (dispatch, getState) => {
   }
 };
 
-let nextTodoId = 0;
-
-export const addGame = (item) => {
+export const addGame = () => {
   return {
     type: ADD_TO_WISH_LIST,
-    payload: item,
+    payload: wishList,
   };
 };
 
-export const removeGame = (item) => {
+export const removeGame = () => {
   return {
     type: REMOVE_GAME_FROM_WISH_LIST,
-    payload: item,
+    payload: wishList,
   };
 };
 
-export const removeAll = (wishList) => {
+export const removeAll = () => {
   return {
     type: REMOVE_ALL_FROM_WISH_LIST,
     payload: wishList,

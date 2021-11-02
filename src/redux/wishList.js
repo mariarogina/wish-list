@@ -51,15 +51,16 @@ export const handleAddNewGame = (item) => (dispatch, getState) => {
   });
 };
 
-export const handleRemoveGame = () => (dispatch, getState) => {
+export const handleRemoveGame = (item) => (dispatch, getState) => {
   const { wishList } = getState()[wishList];
+  const filteredList = wishList.filter((x) => x.id !== item.id);
   dispatch({
     type: actions.REMOVE_GAME_FROM_WISH_LIST,
-    payload: wishList.filter((item) => item.id !== action.payload.id),
+    payload: filteredList,
   });
 };
 
-export const handleRemoveAll = () => {
+export const handleRemoveAll = () => (dispatch, getState) => {
   const { wishList } = getState()[wishList];
   const cleanedWishList = [];
   dispatch({
