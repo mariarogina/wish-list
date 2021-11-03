@@ -21,6 +21,7 @@ export default function reducer(state = reducerRecord, action) {
 //Selectors (gameList, wishList)
 
 export const stateSelector = (state) => state[moduleName];
+
 export const gameListSelector = createSelector(
   stateSelector,
   (state) => state.gameList
@@ -36,7 +37,7 @@ export const wishListSelector = createSelector(
 export const handleAddNewGame = (item) => (dispatch, getState) => {
   const { wishList } = getState()[wishList];
 
-  let items = [...tableData];
+  let items = [...wishList];
   let lastId = Math.max.apply(
     null,
     items.map((item) => item.id)
