@@ -1,38 +1,151 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.mainGameWrap {
+  width: 71%;
+}
+.mainWishWrap {
+  width: 28%;
+}
+
+.gameItem {
+  list-style: none;
+  width: 100px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid gray;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+}
+
+.wishItem {
+  list-style: none;
+  width: 100px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid gray;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+}
+
+.clearButtonWrap {
+  width: inherit;
+  text-align: center;
+  display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+#closeButton {
+  position: absolute;
+  background: rgb(224, 93, 93);
+  outline: none;
   color: white;
+  top: -2px;
+  right: -2px;
+  width: 21px;
+  height: 21px;
+  font-size: 0.7rem;
+  text-align: center;
+  border-radius: 2px;
+  padding: 2px;
+  border-color: rgb(224, 93, 93);
+  border-style: none;
+}
+#closeButtonWish {
+  position: absolute;
+  background: rgb(224, 93, 93);
+  outline: none;
+  color: white;
+  top: -2px;
+  right: -2px;
+  width: 21px;
+  height: 21px;
+  font-size: 0.7rem;
+  text-align: center;
+  border-radius: 2px;
+  padding: 2px;
+  border-color: rgb(224, 93, 93);
+  border-style: none;
+}
+#clearButton {
+  background-color: rgb(238, 95, 95);
+  outline: none;
+  border-radius: 3px;
+  border-color: rgb(238, 95, 95);
+  border-style: none;
+  height: 30px;
+  width: 100px;
+  display: block;
+  margin: auto;
+}
+#clearButtonWish {
+  background-color: rgb(238, 95, 95);
+  outline: none;
+  border-radius: 3px;
+  border-color: rgb(238, 95, 95);
+  border-style: none;
+  height: 30px;
+  width: 100px;
+  display: block;
+  margin: auto;
+}
+#closeButtonWish:focus,
+#clearButtonWish:focus {
+  outline: none;
 }
 
-.App-link {
-  color: #61dafb;
+#closeButton:focus,
+#clearButton:focus {
+  outline: none;
+}
+.gameItem p {
+  height: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.wishItem p {
+  height: 40px;
+}
+.gameContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid gray;
+  margin: 8px;
+  border-radius: 8px;
+}
+
+.wishContainer {
+  text-align: center;
+  border: 1px solid gray;
+  margin: 8px;
+  border-radius: 8px;
+}
+.wishList {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 8px;
+}
+
+.gameList {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 8px;
+}
+
+.gameImg {
+  height: 80px;
+}
+.imgContainer {
+  height: 80px;
 }
