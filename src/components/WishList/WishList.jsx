@@ -1,8 +1,17 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 
 const WishList = (props) => {
+  useEffect(() => {
+    props.handleFetchWishList();
+  }, []);
+
+  useEffect(() => {
+    props.handleFetchTotal();
+  }, []);
+
   const handleRemove = useCallback((item) => {
     props.handleRemoveGamefromWishList(item);
+    props.handleSetTotalPrice();
   }, []);
 
   const handleClear = useCallback(() => {
@@ -12,8 +21,8 @@ const WishList = (props) => {
     <div className="mainWishWrap">
       <div className="wishContainer">
         <ul className="wishList">
-          {props.gameList &&
-            props.gameList.slice(1, 3).map((item) => (
+          {props.wishList &&
+            props.wishList.map((item) => (
               <li key={item.id} className="wishItem">
                 <button
                   id="closeButtonWish"
@@ -24,7 +33,6 @@ const WishList = (props) => {
                   X
                 </button>
                 <p>{item?.name}</p>
-                <p>{item?.id}</p>
                 <div className="imgContainer">
                   {item.cover ? (
                     <img className="gameImg" src={item.cover} alt="" />
@@ -40,6 +48,7 @@ const WishList = (props) => {
               </li>
             ))}
         </ul>
+        <h1>{props.totalPrice} RUR</h1>
         <div className="clearButtonWrap">
           <button onClick={() => handleClear()} id="clearButtonWish">
             Clear All

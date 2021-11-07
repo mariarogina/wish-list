@@ -13,6 +13,11 @@ const GameList = (props) => {
     props.handleRemoveAllGame();
   });
 
+  const handleAdd = useCallback((item) => {
+    props.handleAddNewGame(item);
+    props.handleSetTotalPrice();
+  });
+
   console.log(props);
   return (
     <div className="mainGameWrap">
@@ -43,6 +48,7 @@ const GameList = (props) => {
                   )}
                 </div>
                 {item.price ? <h2>RUR {item.price}</h2> : <h2>FREE</h2>}
+                <button onClick={() => handleAdd(item)}>ADD</button>
               </li>
             ))}
         </ul>
