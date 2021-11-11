@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 
+import { useLocalStorage } from "../../redux/hooks/useLocalStorage";
+
 const WishList = ({
   handleFetchWishList,
   handleRemoveGamefromWishList,
@@ -13,6 +15,10 @@ const WishList = ({
     handleFetchWishList();
     handleFetchTotal();
   }, [handleFetchWishList, handleFetchTotal]);
+  // useEffect(() => {
+  //   localStorage.setItem("wishList", JSON.stringify(wishList));
+  //   localStorage.setItem("priceTotal", JSON.stringify(totalPrice));
+  // }, [wishList]);
 
   const handleRemove = useCallback(
     (item) => {
