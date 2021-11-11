@@ -15,8 +15,7 @@ function saveToLocalStorage(state) {
   }
 }
 
-// load string from localStarage and convert into an Object
-// invalid output must be undefined
+// load string from localStarage
 function loadFromLocalStorage() {
   try {
     const serialisedState = localStorage.getItem("persistantState");
@@ -28,8 +27,7 @@ function loadFromLocalStorage() {
   }
 }
 
-// create our store from our rootReducers and use loadFromLocalStorage
-// to overwrite any values that we already have saved
+// create our store
 
 const store = createStore(
   reducer,
@@ -37,8 +35,7 @@ const store = createStore(
   composeWithDevTools(enhancer)
 );
 
-// listen for store changes and use saveToLocalStorage to
-// save them to localStorage
+// listen for store changes
 store.subscribe(() => saveToLocalStorage(store.getState()));
 
 export default store;

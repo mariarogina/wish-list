@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect } from "react";
 
-import { useLocalStorage } from "../../redux/hooks/useLocalStorage";
-
 const WishList = ({
   handleFetchWishList,
   handleRemoveGamefromWishList,
