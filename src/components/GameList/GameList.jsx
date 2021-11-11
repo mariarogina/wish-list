@@ -1,62 +1,55 @@
 import React, { useEffect, useCallback } from "react";
+import { batch } from "react-redux";
 
-const GameList = (props) => {
+import GameListItem from "./GameListItem";
+
+const GameList = ({
+  handleFetchList,
+  gameList,
+  handleAddNewGame,
+  handleSetTotalPrice,
+  handleRemoveGamefromWishList,
+  wishList,
+}) => {
   useEffect(() => {
-    props.handleFetchList();
-  }, []);
+    handleFetchList();
+  }, [handleFetchList]);
 
-  const handleRemove = useCallback((item) => {
-    props.handleRemoveGamefromGameList(item);
-  }, []);
+  const handleAdd = useCallback(
+    (item) => {
+      batch(() => {
+        handleAddNewGame(item);
+        handleSetTotalPrice();
+      });
+    },
+    [handleAddNewGame, handleSetTotalPrice]
+  );
+  const handleRemove = useCallback(
+    (item) => {
+      handleRemoveGamefromWishList(item);
+      handleSetTotalPrice();
+    },
+    [handleRemoveGamefromWishList, handleSetTotalPrice]
+  );
 
-  const handleClear = useCallback(() => {
-    props.handleRemoveAllGame();
-  });
-
-  const handleAdd = useCallback((item) => {
-    props.handleAddNewGame(item);
-    props.handleSetTotalPrice();
-  });
-
-  console.log(props);
+  const itemIsInCart = (myItem) => {
+    return wishList.findIndex((item) => item.id === myItem.id) !== -1;
+  };
   return (
     <div className="mainGameWrap">
       <div className="gameContainer">
         <ul className="gameList">
-          {props.gameList &&
-            props.gameList.map((item) => (
-              <li key={item.id} className="gameItem">
-                <button
-                  id="closeButton"
-                  onClick={() => {
-                    handleRemove(item);
-                  }}
-                >
-                  X
-                </button>
-                <p>{item?.name}</p>
-                <p>{item?.id}</p>
-                <div className="imgContainer">
-                  {item.cover ? (
-                    <img className="gameImg" src={item.cover} alt="" />
-                  ) : (
-                    <img
-                      className="gameImg"
-                      src="https://www.cubexled.com/assets/img/no_image.jpg"
-                      alt=""
-                    />
-                  )}
-                </div>
-                {item.price ? <h2>RUR {item.price}</h2> : <h2>FREE</h2>}
-                <button onClick={() => handleAdd(item)}>ADD</button>
-              </li>
+          {gameList &&
+            gameList.map((item) => (
+              <GameListItem
+                key={item.id}
+                item={item}
+                handleAdd={handleAdd}
+                handleRemove={handleRemove}
+                itemIsInCart={itemIsInCart}
+              />
             ))}
         </ul>
-        <div className="clearButtonWrap">
-          <button onClick={() => handleClear()} id="clearButton">
-            Clear All
-          </button>
-        </div>
       </div>
     </div>
   );

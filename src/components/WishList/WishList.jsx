@@ -1,28 +1,37 @@
 import React, { useCallback, useEffect } from "react";
 
-const WishList = (props) => {
+const WishList = ({
+  handleFetchWishList,
+  handleRemoveGamefromWishList,
+  handleSetTotalPrice,
+  handleRemoveAllWish,
+  handleFetchTotal,
+  wishList,
+  totalPrice,
+}) => {
   useEffect(() => {
-    props.handleFetchWishList();
-  }, []);
+    handleFetchWishList();
+    handleFetchTotal();
+  }, [handleFetchWishList, handleFetchTotal]);
 
-  useEffect(() => {
-    props.handleFetchTotal();
-  }, []);
-
-  const handleRemove = useCallback((item) => {
-    props.handleRemoveGamefromWishList(item);
-    props.handleSetTotalPrice();
-  }, []);
+  const handleRemove = useCallback(
+    (item) => {
+      handleRemoveGamefromWishList(item);
+      handleSetTotalPrice();
+    },
+    [handleRemoveGamefromWishList, handleSetTotalPrice]
+  );
 
   const handleClear = useCallback(() => {
-    props.handleRemoveAllWish();
-  });
+    handleRemoveAllWish();
+  }, [handleRemoveAllWish]);
+
   return (
     <div className="mainWishWrap">
       <div className="wishContainer">
         <ul className="wishList">
-          {props.wishList &&
-            props.wishList.map((item) => (
+          {wishList &&
+            wishList.map((item) => (
               <li key={item.id} className="wishItem">
                 <button
                   id="closeButtonWish"
@@ -33,22 +42,11 @@ const WishList = (props) => {
                   X
                 </button>
                 <p>{item?.name}</p>
-                <div className="imgContainer">
-                  {item.cover ? (
-                    <img className="gameImg" src={item.cover} alt="" />
-                  ) : (
-                    <img
-                      className="gameImg"
-                      src="https://www.cubexled.com/assets/img/no_image.jpg"
-                      alt=""
-                    />
-                  )}
-                </div>
-                {item.price ? <h2>RUR {item.price}</h2> : <h2>FREE</h2>}
               </li>
             ))}
         </ul>
-        <h1>{props.totalPrice} RUR</h1>
+        <h1>Total Price:{totalPrice}</h1>
+
         <div className="clearButtonWrap">
           <button onClick={() => handleClear()} id="clearButtonWish">
             Clear All

@@ -5,7 +5,7 @@ import {
   handleFetchList,
   handleAddNewGame,
   handleSetTotalPrice,
-  handleRemoveGamefromGameList,
+  handleRemoveGamefromWishList,
   handleRemoveAllGame,
 } from "../../redux/wishList";
 import GameList from "./GameList";
@@ -20,6 +20,6 @@ export default connect(
     handleRemoveAllGame,
     handleAddNewGame,
     handleSetTotalPrice,
-    handleRemoveGamefromGameList,
+    handleRemoveGamefromWishList,
   }
 )(GameList);

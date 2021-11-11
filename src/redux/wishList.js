@@ -40,7 +40,7 @@ export default function reducer(state = reducerRecord, action) {
     case REMOVE_ALL_FROM_GAME_LIST:
       return { ...state, gameList: [] };
     case REMOVE_ALL_FROM_WISH_LIST:
-      return { ...state, wishList: [] };
+      return { ...state, wishList: [], totalPrice: 0 };
     case SET_TOTAL_PRICE:
       return { ...state, totalPrice: payload };
 
@@ -129,7 +129,7 @@ export const handleAddNewGame = (item) => (dispatch, getState) => {
   } else {
     oldWishList = getState().wishList.wishList;
   }
-  const newWishList = [...oldWishList, { ...item, id: uuidv4() }];
+  const newWishList = [...oldWishList, { ...item }];
   dispatch({ type: ADD_TO_WISH_LIST, payload: newWishList });
 };
 
