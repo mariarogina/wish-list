@@ -30,7 +30,6 @@ const WishList = ({
 
   const onDragOverDiv = (e) => {
     e.preventDefault();
-    console.log("I am dragging");
   };
 
   const onDropDiv = (e) => {
@@ -39,12 +38,12 @@ const WishList = ({
       let newList = gameList.filter((item) => item.id === id);
       handleAddNewGame(newList[0]);
       handleSetTotalPrice();
+    } else {
+      alert("Эта игра уже в списке желаний");
     }
   };
 
   const onDragStartDiv = (e, id, name) => {
-    console.log("Drag start", id);
-    console.log("Drag start", name);
     e.dataTransfer.setData("id", id);
   };
 

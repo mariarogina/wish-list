@@ -3,8 +3,6 @@ import GameListImage from "./GameListImage";
 
 const GameListItem = ({ item, handleAdd, handleRemove, itemIsInCart }) => {
   const onDragStartDiv = (e, id, name) => {
-    console.log("Drag start", id);
-    console.log("Drag start", name);
     e.dataTransfer.setData("id", id);
   };
   return (

@@ -192,3 +192,9 @@ $text_grey: #dadada;
 .price {color:$price_grey}
 
 .total-price{color:$blue}
+
+@media (max-width:900px) {
+  .App{
+    height:auto
+  }
+}

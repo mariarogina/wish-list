@@ -38,7 +38,6 @@ const GameList = ({
 
   const onDragOverDiv = (e) => {
     e.preventDefault();
-    console.log("I am dragging");
   };
 
   const onDropDiv = (e) => {
