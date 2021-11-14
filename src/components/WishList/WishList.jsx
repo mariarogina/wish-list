@@ -6,17 +6,15 @@ const WishList = ({
   handleSetTotalPrice,
   handleRemoveAllWish,
   handleFetchTotal,
+  handleAddNewGame,
   wishList,
+  gameList,
   totalPrice,
 }) => {
   useEffect(() => {
     handleFetchWishList();
     handleFetchTotal();
   }, [handleFetchWishList, handleFetchTotal]);
-  // useEffect(() => {
-  //   localStorage.setItem("wishList", JSON.stringify(wishList));
-  //   localStorage.setItem("priceTotal", JSON.stringify(totalPrice));
-  // }, [wishList]);
 
   const handleRemove = useCallback(
     (item) => {
@@ -30,13 +28,42 @@ const WishList = ({
     handleRemoveAllWish();
   }, [handleRemoveAllWish]);
 
+  const onDragOverDiv = (e) => {
+    e.preventDefault();
+    console.log("I am dragging");
+  };
+
+  const onDropDiv = (e) => {
+    let id = e.dataTransfer.getData("id");
+    if (wishList.findIndex((item) => item.id === id) == -1) {
+      let newList = gameList.filter((item) => item.id === id);
+      handleAddNewGame(newList[0]);
+      handleSetTotalPrice();
+    }
+  };
+
+  const onDragStartDiv = (e, id, name) => {
+    console.log("Drag start", id);
+    console.log("Drag start", name);
+    e.dataTransfer.setData("id", id);
+  };
+
   return (
-    <div className="mainWishWrap">
+    <div
+      className="mainWishWrap droppable"
+      onDragOver={(e) => onDragOverDiv(e)}
+      onDrop={(e) => onDropDiv(e)}
+    >
       <div className="wishContainer">
         <ul className="wishList">
           {wishList &&
             wishList.map((item) => (
-              <li key={item.id} className="wishItem">
+              <li
+                key={item.id}
+                className="wishItem"
+                onDragStart={(e) => onDragStartDiv(e, item.id, item?.name)}
+                draggable
+              >
                 <button
                   id="closeButtonWish"
                   onClick={() => {

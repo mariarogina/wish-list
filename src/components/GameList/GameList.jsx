@@ -35,8 +35,24 @@ const GameList = ({
   const itemIsInCart = (myItem) => {
     return wishList.findIndex((item) => item.id === myItem.id) !== -1;
   };
+
+  const onDragOverDiv = (e) => {
+    e.preventDefault();
+    console.log("I am dragging");
+  };
+
+  const onDropDiv = (e) => {
+    let id = e.dataTransfer.getData("id");
+    let item = wishList.find((item) => item.id === id);
+    handleRemove(item);
+    handleSetTotalPrice();
+  };
   return (
-    <div className="mainGameWrap">
+    <div
+      className="mainGameWrap droppable"
+      onDragOver={(e) => onDragOverDiv(e)}
+      onDrop={(e) => onDropDiv(e)}
+    >
       <div className="gameContainer">
         <ul className="gameList">
           {gameList &&

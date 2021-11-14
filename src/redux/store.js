@@ -6,6 +6,8 @@ import reducer from "./reducer";
 import { persistMiddleware } from "./middlewares";
 
 const enhancer = applyMiddleware(ReduxThunk, logger, persistMiddleware);
+
+//save to localStorage
 function saveToLocalStorage(state) {
   try {
     const serialisedState = JSON.stringify(state);
