@@ -1,17 +1,27 @@
 .App {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #5a5a5a;
+  height: 100vh;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .mainGameWrap {
   width: 71%;
 }
+
 .mainWishWrap {
   width: 28%;
 }
 
 .gameItem {
+  color: #dadada;
   list-style: none;
   width: 100px;
   font-size: 0.7rem;
@@ -24,81 +34,103 @@
   position: relative;
 }
 
+.gameItem p {
+  height: 30px;
+}
+
+.itemName {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
 .wishItem {
   list-style: none;
-  width: 100px;
+  background-color: #5a5a5a;
+  text-align: left;
+  height: 30px;
+  width: 80%;
   font-size: 0.7rem;
   font-weight: bold;
-  border: 1px solid gray;
   margin: 10px;
   padding: 5px;
-  text-align: center;
   border-radius: 5px;
   position: relative;
+}
+
+.wishItem p {
+  height: 20px;
+  width: 100%;
 }
 
 .clearButtonWrap {
   width: inherit;
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-#closeButton {
+.closeButton {
   position: absolute;
-  background: rgb(224, 93, 93);
+  background: #e05d5d;
   outline: none;
   color: white;
-  top: -2px;
-  right: -2px;
+  top: 2px;
+  right: 2px;
+  width: 21px;
+  height: 21px;
+  font-size: 0.7rem;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 2px;
+  border-style: none;
+}
+
+.closeButtonWish {
+  position: absolute;
+  background-color: inherit;
+  top: 2px;
+  right: 2px;
   width: 21px;
   height: 21px;
   font-size: 0.7rem;
   text-align: center;
   border-radius: 2px;
   padding: 2px;
-  border-color: rgb(224, 93, 93);
+  font-weight: bold;
   border-style: none;
 }
-#closeButtonWish {
-  position: absolute;
-  background: rgb(224, 93, 93);
-  outline: none;
-  color: white;
-  top: -2px;
-  right: -2px;
-  width: 21px;
-  height: 21px;
-  font-size: 0.7rem;
-  text-align: center;
-  border-radius: 2px;
-  padding: 2px;
-  border-color: rgb(224, 93, 93);
-  border-style: none;
-}
+
 #clearButton {
-  background-color: rgb(238, 95, 95);
+  background-color: #ee5f5f;
   outline: none;
   border-radius: 3px;
-  border-color: rgb(238, 95, 95);
+  border-color: #ee5f5f;
   border-style: none;
   height: 30px;
   width: 100px;
   display: block;
   margin: auto;
 }
+
 #clearButtonWish {
-  background-color: rgb(238, 95, 95);
+  background-color: #ee5f5f;
   outline: none;
   border-radius: 3px;
-  border-color: rgb(238, 95, 95);
+  border-color: #ee5f5f;
   border-style: none;
   height: 30px;
   width: 100px;
   display: block;
   margin: auto;
 }
+
 #closeButtonWish:focus,
 #clearButtonWish:focus {
   outline: none;
@@ -108,23 +140,16 @@
 #clearButton:focus {
   outline: none;
 }
-.gameItem p {
-  height: 40px;
-}
 
-.wishItem {
-  height: 30px;
-  width: 80%;
-}
-
-.wishItem p {
-  height: 20px;
-  width: 100%;
-}
 .gameContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
   border: 1px solid gray;
   margin: 8px;
@@ -136,22 +161,61 @@
   border: 1px solid gray;
   margin: 8px;
   border-radius: 8px;
+  background-color: #393A3A;
+  color: #dadada;
+  padding-bottom: 20px;
 }
+
 .wishList {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   border-radius: 8px;
 }
 
 .gameList {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   border-radius: 8px;
 }
 
 .gameImg {
-  height: 80px;
+  height: 90px;
 }
+
 .imgContainer {
-  height: 70px;
+  height: 90px;
 }
+
+.itemButton {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  font-weight: bold;
+}
+
+.itemAddButton {
+  color: #00d97c;
+}
+
+.itemDeleteButton {
+  color: #00a2c8;
+}
+
+.wishClearButton {
+  color: #00a2c8;
+}
+
+.price {
+  color: #9b9b9b;
+}
+
+.total-price {
+  color: #00a2c8;
+}
+/*# sourceMappingURL=App.css.map */

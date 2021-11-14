@@ -65,7 +65,7 @@ const WishList = ({
                 draggable
               >
                 <button
-                  id="closeButtonWish"
+                  className="closeButtonWish wishClearButton"
                   onClick={() => {
                     handleRemove(item);
                   }}
@@ -76,13 +76,19 @@ const WishList = ({
               </li>
             ))}
         </ul>
-        <h1>Total Price:{totalPrice}</h1>
-
-        <div className="clearButtonWrap">
-          <button onClick={() => handleClear()} id="clearButtonWish">
-            Clear All
-          </button>
-        </div>
+        <h1>
+          Cумма: <span className="total-price">{totalPrice} руб.</span>
+        </h1>
+        {wishList.length > 0 && (
+          <div className="clearButtonWrap">
+            <button
+              onClick={() => handleClear()}
+              className="itemButton wishClearButton"
+            >
+              Очистить
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

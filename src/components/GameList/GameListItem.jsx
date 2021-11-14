@@ -14,13 +14,27 @@ const GameListItem = ({ item, handleAdd, handleRemove, itemIsInCart }) => {
       onDragStart={(e) => onDragStartDiv(e, item.id, item?.name)}
       draggable
     >
-      <p>{item?.name}</p>
       <GameListImage item={item} />
-      {item.price ? <h2>RUR {item.price}</h2> : <h2>FREE</h2>}
-      {itemIsInCart(item) ? (
-        <button onClick={() => handleRemove(item)}>Удалить</button>
+      <p className="itemName">{item?.name}</p>
+      {item.price ? (
+        <h2 className="price">{item.price} руб.</h2>
       ) : (
-        <button onClick={() => handleAdd(item)}>Добавить</button>
+        <h2 className="price">FREE</h2>
+      )}
+      {itemIsInCart(item) ? (
+        <button
+          className="itemButton itemDeleteButton"
+          onClick={() => handleRemove(item)}
+        >
+          В списке
+        </button>
+      ) : (
+        <button
+          className="itemButton itemAddButton"
+          onClick={() => handleAdd(item)}
+        >
+          Добавить
+        </button>
       )}
     </li>
   );
