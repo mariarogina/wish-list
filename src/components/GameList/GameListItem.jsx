@@ -2,8 +2,7 @@ import React from "react";
 import GameListImage from "./GameListImage";
 
 const GameListItem = ({ item, handleAdd, handleRemove, itemIsInCart }) => {
-  const onDragStartDiv = (e, id, item) => {
-    e.dataTransfer.setData("theItem", item);
+  const onDragStartDiv = (e, id) => {
     e.dataTransfer.setData("id", id);
   };
   return (

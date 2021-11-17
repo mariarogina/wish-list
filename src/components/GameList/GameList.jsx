@@ -42,10 +42,8 @@ const GameList = ({
 
   const onDropDiv = (e) => {
     let id = e.dataTransfer.getData("id");
-
-    let theItem = e.dataTransfer.getData("theItem");
     let item = wishList.find((item) => item.id === id);
-    itemIsInCart(theItem) && handleRemove(item);
+    handleRemove(item);
     handleSetTotalPrice();
   };
   return (

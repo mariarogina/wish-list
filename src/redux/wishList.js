@@ -150,7 +150,7 @@ export const handleRemoveGamefromWishList = (game) => (dispatch, getState) => {
     oldWishList = getState().wishList.wishList;
   }
 
-  const newWishList = oldWishList.filter((x) => x.id !== game.id);
+  const newWishList = oldWishList.filter((x) => x?.id !== game?.id);
   dispatch({
     type: REMOVE_GAME_FROM_WISH_LIST,
     payload: newWishList,
