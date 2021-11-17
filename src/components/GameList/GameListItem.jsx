@@ -2,17 +2,19 @@ import React from "react";
 import GameListImage from "./GameListImage";
 
 const GameListItem = ({ item, handleAdd, handleRemove, itemIsInCart }) => {
-  const onDragStartDiv = (e, id, name) => {
+  const onDragStartDiv = (e, id, item) => {
+    e.dataTransfer.setData("theItem", item);
     e.dataTransfer.setData("id", id);
   };
   return (
     <li
       key={item.id}
       className="gameItem"
-      onDragStart={(e) => onDragStartDiv(e, item.id, item?.name)}
+      onDragStart={(e) => onDragStartDiv(e, item.id, item)}
       draggable
     >
       <GameListImage item={item} />
+
       <p className="itemName">{item?.name}</p>
       {item.price ? (
         <h2 className="price">{item.price} руб.</h2>
@@ -21,6 +23,7 @@ const GameListItem = ({ item, handleAdd, handleRemove, itemIsInCart }) => {
       )}
       {itemIsInCart(item) ? (
         <button
+          role="button"
           className="itemButton itemDeleteButton"
           onClick={() => handleRemove(item)}
         >
@@ -29,6 +32,7 @@ const GameListItem = ({ item, handleAdd, handleRemove, itemIsInCart }) => {
       ) : (
         <button
           className="itemButton itemAddButton"
+          role="button"
           onClick={() => handleAdd(item)}
         >
           Добавить

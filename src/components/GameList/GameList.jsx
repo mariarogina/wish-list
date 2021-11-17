@@ -42,8 +42,10 @@ const GameList = ({
 
   const onDropDiv = (e) => {
     let id = e.dataTransfer.getData("id");
+
+    let theItem = e.dataTransfer.getData("theItem");
     let item = wishList.find((item) => item.id === id);
-    handleRemove(item);
+    itemIsInCart(theItem) && handleRemove(item);
     handleSetTotalPrice();
   };
   return (
@@ -53,6 +55,7 @@ const GameList = ({
       onDrop={(e) => onDropDiv(e)}
     >
       <div className="gameContainer">
+        <h2>Wish List App</h2>
         <ul className="gameList">
           {gameList &&
             gameList.map((item) => (
