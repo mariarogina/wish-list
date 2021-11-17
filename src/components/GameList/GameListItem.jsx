@@ -16,7 +16,7 @@ const GameListItem = ({ item, handleAdd, handleRemove, itemIsInCart }) => {
 
       <p className="itemName">{item?.name}</p>
       {item.price ? (
-        <h2 className="price">{item.price} руб.</h2>
+        <h2 className="price">{item.price} RUR</h2>
       ) : (
         <h2 className="price">FREE</h2>
       )}
@@ -26,7 +26,7 @@ const GameListItem = ({ item, handleAdd, handleRemove, itemIsInCart }) => {
           className="itemButton itemDeleteButton"
           onClick={() => handleRemove(item)}
         >
-          В списке
+          In wishlist
         </button>
       ) : (
         <button
@@ -34,7 +34,7 @@ const GameListItem = ({ item, handleAdd, handleRemove, itemIsInCart }) => {
           role="button"
           onClick={() => handleAdd(item)}
         >
-          Добавить
+          Add
         </button>
       )}
     </li>

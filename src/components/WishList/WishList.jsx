@@ -39,7 +39,7 @@ const WishList = ({
       handleAddNewGame(newList[0]);
       handleSetTotalPrice();
     } else {
-      alert("Эта игра уже в списке желаний");
+      alert("This game is already in the list");
     }
   };
 
@@ -76,7 +76,7 @@ const WishList = ({
             ))}
         </ul>
         <h1>
-          Cумма: <span className="total-price">{totalPrice} руб.</span>
+          Total: <span className="total-price">{totalPrice} RUR</span>
         </h1>
         {wishList.length > 0 && (
           <div className="clearButtonWrap">
@@ -84,7 +84,7 @@ const WishList = ({
               onClick={() => handleClear()}
               className="itemButton wishClearButton"
             >
-              Очистить
+              Clear
             </button>
           </div>
         )}

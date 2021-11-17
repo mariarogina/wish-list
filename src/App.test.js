@@ -25,7 +25,7 @@ describe.skip("Smoke (surface-level) tests", () => {
         </React.StrictMode>
       </Provider>
     );
-    const linkElement = screen.getByText(/руб/i);
+    const linkElement = screen.getByText(/rur/i);
     expect(linkElement).toBeInTheDocument();
   });
 
@@ -38,7 +38,7 @@ describe.skip("Smoke (surface-level) tests", () => {
       </Provider>
     );
     await waitFor(() => {
-      const linkElement = screen.getAllByText(/добавить/i)[0];
+      const linkElement = screen.getAllByText(/add/i)[0];
       expect(linkElement).toBeInTheDocument();
     });
   });
