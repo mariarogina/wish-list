@@ -53,7 +53,11 @@ const GameList = ({
       onDrop={(e) => onDropDiv(e)}
     >
       <div className="gameContainer">
-        <h2>Wish List App</h2>
+        <h2 className="gameHeader">Wish List App</h2>
+        <h2 className="gameHeader" style={{ color: "white" }}>
+          Drag and Drop
+        </h2>
+
         <ul className="gameList">
           {gameList &&
             gameList.map((item) => (

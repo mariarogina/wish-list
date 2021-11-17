@@ -135,11 +135,15 @@ $text_grey: #dadada;
     outline: none;
   }
   
-  
+  .gameHeader {
+    margin:5px;
+    padding: 5px
+  }
  
   .gameContainer {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     border: 1px solid gray;
@@ -187,7 +191,8 @@ $text_grey: #dadada;
 
 .itemDeleteButton {color: $blue}
 
-.wishClearButton {color: $blue}
+.wishClearButton {color: $blue;
+text-decoration: underline;}
 
 .price {color:$price_grey}
 
