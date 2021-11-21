@@ -2,11 +2,10 @@ import { connect } from "react-redux";
 import {
   gameListSelector,
   wishListSelector,
-  handleFetchList,
-  handleAddNewGame,
+  fetchListRequest,
+  addNewGameRequest,
   handleSetTotalPrice,
   handleRemoveGamefromWishList,
-  handleRemoveAllGame,
 } from "../../redux/wishList";
 import GameList from "./GameList";
 
@@ -16,9 +15,8 @@ export default connect(
     wishList: wishListSelector(state),
   }),
   {
-    handleFetchList,
-    handleRemoveAllGame,
-    handleAddNewGame,
+    fetchListRequest,
+    addNewGameRequest,
     handleSetTotalPrice,
     handleRemoveGamefromWishList,
   }

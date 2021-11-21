@@ -3,12 +3,11 @@ import {
   wishListSelector,
   handleRemoveAllWish,
   handleRemoveGamefromWishList,
-  handleFetchWishList,
   gameListSelector,
   totalPriceSelector,
   handleSetTotalPrice,
-  handleFetchTotal,
-  handleAddNewGame,
+  fetchTotalRequest,
+  addNewGameRequest,
 } from "../../redux/wishList";
 import WishList from "./WishList";
 
@@ -21,9 +20,8 @@ export default connect(
   {
     handleRemoveAllWish,
     handleRemoveGamefromWishList,
-    handleFetchWishList,
     handleSetTotalPrice,
-    handleFetchTotal,
-    handleAddNewGame,
+    fetchTotalRequest,
+    addNewGameRequest,
   }
 )(WishList);

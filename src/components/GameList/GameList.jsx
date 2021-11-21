@@ -4,25 +4,25 @@ import { batch } from "react-redux";
 import GameListItem from "./GameListItem";
 
 const GameList = ({
-  handleFetchList,
+  fetchListRequest,
   gameList,
-  handleAddNewGame,
+  addNewGameRequest,
   handleSetTotalPrice,
   handleRemoveGamefromWishList,
   wishList,
 }) => {
   useEffect(() => {
-    handleFetchList();
-  }, [handleFetchList]);
+    fetchListRequest();
+  }, [fetchListRequest]);
 
   const handleAdd = useCallback(
     (item) => {
       batch(() => {
-        handleAddNewGame(item);
+        addNewGameRequest(item);
         handleSetTotalPrice();
       });
     },
-    [handleAddNewGame, handleSetTotalPrice]
+    [addNewGameRequest, handleSetTotalPrice]
   );
   const handleRemove = useCallback(
     (item) => {

@@ -4,8 +4,23 @@ import logger from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reducer from "./reducer";
 import { persistMiddleware } from "./middlewares";
+import createSagaMiddleware from "redux-saga";
+import { all } from "redux-saga/effects";
+import {
+  fetchListSaga,
+  fetchTotalSaga,
+  addNewGameSaga,
+  removeGameSaga,
+  setTotalSaga,
+} from "./wishList.js";
 
-const enhancer = applyMiddleware(ReduxThunk, logger, persistMiddleware);
+const sagaMiddleware = createSagaMiddleware();
+const enhancer = applyMiddleware(
+  ReduxThunk,
+  logger,
+  persistMiddleware,
+  sagaMiddleware
+);
 
 //save to localStorage
 function saveToLocalStorage(state) {
@@ -29,6 +44,15 @@ function loadFromLocalStorage() {
   }
 }
 
+const rootSaga = function* rootSaga() {
+  yield all([
+    fetchListSaga(),
+    fetchTotalSaga(),
+    addNewGameSaga(),
+    // setTotalSaga(),
+    // removeGameSaga(),
+  ]);
+};
 // create our store
 
 const store = createStore(
@@ -39,5 +63,7 @@ const store = createStore(
 
 // listen for store changes
 store.subscribe(() => saveToLocalStorage(store.getState()));
+
+sagaMiddleware.run(rootSaga);
 
 export default store;

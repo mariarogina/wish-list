@@ -1,20 +1,18 @@
 import React, { useCallback, useEffect } from "react";
 
 const WishList = ({
-  handleFetchWishList,
   handleRemoveGamefromWishList,
   handleSetTotalPrice,
   handleRemoveAllWish,
-  handleFetchTotal,
-  handleAddNewGame,
+  fetchTotalRequest,
+  addNewGameRequest,
   wishList,
   gameList,
   totalPrice,
 }) => {
   useEffect(() => {
-    handleFetchWishList();
-    handleFetchTotal();
-  }, [handleFetchWishList, handleFetchTotal]);
+    fetchTotalRequest();
+  }, [fetchTotalRequest]);
 
   const handleRemove = useCallback(
     (item) => {
@@ -36,7 +34,7 @@ const WishList = ({
     let id = e.dataTransfer.getData("id");
     if (wishList.findIndex((item) => item.id === id) == -1) {
       let newList = gameList.filter((item) => item.id === id);
-      handleAddNewGame(newList[0]);
+      addNewGameRequest(newList[0]);
       handleSetTotalPrice();
     } else {
       alert("This game is already in the list");
