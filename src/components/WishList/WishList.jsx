@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect } from "react";
+import { batch } from "react-redux";
 
 const WishList = ({
   handleRemoveGamefromWishList,
@@ -34,8 +35,10 @@ const WishList = ({
     let id = e.dataTransfer.getData("id");
     if (wishList.findIndex((item) => item.id === id) == -1) {
       let newList = gameList.filter((item) => item.id === id);
-      addNewGameRequest(newList[0]);
-      handleSetTotalPrice();
+      batch(() => {
+        addNewGameRequest(newList[0]);
+        handleSetTotalPrice();
+      });
     } else {
       alert("This game is already in the list");
     }
