@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-import { put, take, select } from "redux-saga/effects";
+import { put, take, select, call } from "redux-saga/effects";
 const { v4: uuidv4 } = require("uuid");
 
 export const moduleName = "wishList";
@@ -20,6 +20,15 @@ export const SET_TOTAL_REQUEST = `${moduleName}/SET_TOTAL_REQUEST`;
 export const SET_TOTAL_PRICE = `${moduleName}/SET_TOTAL_PRICE`;
 
 const persistedData = JSON.parse(localStorage.getItem("wishList"));
+export const formatData = (data) => {
+  //преобразование
+  const formattedData = Object.entries(data).map((el) => {
+    el[1].id = el[0];
+    return el[1];
+  });
+  //return
+  return formattedData;
+};
 
 export const reducerRecord = {
   gameList: [],
@@ -56,18 +65,21 @@ export const fetchListRequest = () => ({
   type: FETCH_LIST_REQUEST,
 });
 
+export async function fetchGameListHelper() {
+  const response = await fetch(
+    "https://gist.githubusercontent.com/Greyewi/e6cfa49e478387a7b878e4430e1f4223/raw/d045a5c2c977cf05d05ae1a4625762e69cc891c8/game_list.json"
+  );
+  const result = await response.json();
+  return result;
+}
+
 export const fetchListSaga = function* () {
   while (true) {
     yield take(FETCH_LIST_REQUEST);
     try {
-      const response = yield fetch(
-        "https://gist.githubusercontent.com/Greyewi/e6cfa49e478387a7b878e4430e1f4223/raw/d045a5c2c977cf05d05ae1a4625762e69cc891c8/game_list.json"
-      );
-      const data = yield response.json();
-      const formattedData = Object.entries(data).map((el) => {
-        el[1].id = el[0];
-        return el[1];
-      });
+      //wrap normal __async__ func in call
+      const data = yield call(fetchGameListHelper());
+      const formattedData = yield formatData(data);
 
       if (!response.ok) {
         throw new Error(response.statusText);

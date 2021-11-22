@@ -53,8 +53,8 @@ const rootSaga = function* rootSaga() {
     // removeGameSaga(),
   ]);
 };
-// create our store
 
+// create our store
 const store = createStore(
   reducer,
   loadFromLocalStorage(),
@@ -64,6 +64,7 @@ const store = createStore(
 // listen for store changes
 store.subscribe(() => saveToLocalStorage(store.getState()));
 
+//watch sagas
 sagaMiddleware.run(rootSaga);
 
 export default store;
