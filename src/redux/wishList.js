@@ -70,6 +70,9 @@ export async function fetchGameListHelper() {
     "https://gist.githubusercontent.com/Greyewi/e6cfa49e478387a7b878e4430e1f4223/raw/d045a5c2c977cf05d05ae1a4625762e69cc891c8/game_list.json"
   );
   const result = await response.json();
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
   return result;
 }
 
@@ -78,12 +81,8 @@ export const fetchListSaga = function* () {
     yield take(FETCH_LIST_REQUEST);
     try {
       //wrap normal __async__ func in call
-      const data = yield call(fetchGameListHelper());
+      const data = yield call(() => fetchGameListHelper());
       const formattedData = yield formatData(data);
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
 
       yield put({
         type: FETCH_GAME_LIST,
