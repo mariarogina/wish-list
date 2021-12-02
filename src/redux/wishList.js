@@ -75,6 +75,9 @@ export async function fetchGameListHelper() {
     throw new Error(response.statusText);
   }
   const result = await response.json();
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
   return result;
 }
 
