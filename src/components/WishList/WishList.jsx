@@ -3,7 +3,7 @@ import { batch } from "react-redux";
 
 const WishList = ({
   handleRemoveGamefromWishList,
-  handleSetTotalPrice,
+  setTotalRequest,
   handleRemoveAllWish,
   fetchTotalRequest,
   addNewGameRequest,
@@ -18,9 +18,9 @@ const WishList = ({
   const handleRemove = useCallback(
     (item) => {
       handleRemoveGamefromWishList(item);
-      handleSetTotalPrice();
+      setTotalRequest();
     },
-    [handleRemoveGamefromWishList, handleSetTotalPrice]
+    [handleRemoveGamefromWishList, setTotalRequest]
   );
 
   const handleClear = useCallback(() => {
@@ -37,7 +37,7 @@ const WishList = ({
       let newList = gameList.filter((item) => item.id === id);
       batch(() => {
         addNewGameRequest(newList[0]);
-        handleSetTotalPrice();
+        setTotalRequest();
       });
     } else {
       alert("This game is already in the list");

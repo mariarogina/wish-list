@@ -4,7 +4,7 @@ import {
   wishListSelector,
   fetchListRequest,
   addNewGameRequest,
-  handleSetTotalPrice,
+  setTotalRequest,
   handleRemoveGamefromWishList,
 } from "../../redux/wishList";
 import GameList from "./GameList";
@@ -17,7 +17,7 @@ export default connect(
   {
     fetchListRequest,
     addNewGameRequest,
-    handleSetTotalPrice,
+    setTotalRequest,
     handleRemoveGamefromWishList,
   }
 )(GameList);

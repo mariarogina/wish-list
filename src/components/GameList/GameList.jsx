@@ -7,7 +7,7 @@ const GameList = ({
   fetchListRequest,
   gameList,
   addNewGameRequest,
-  handleSetTotalPrice,
+  setTotalRequest,
   handleRemoveGamefromWishList,
   wishList,
 }) => {
@@ -19,17 +19,17 @@ const GameList = ({
     (item) => {
       batch(() => {
         addNewGameRequest(item);
-        handleSetTotalPrice();
+        setTotalRequest();
       });
     },
-    [addNewGameRequest, handleSetTotalPrice]
+    [addNewGameRequest, setTotalRequest]
   );
   const handleRemove = useCallback(
     (item) => {
       handleRemoveGamefromWishList(item);
-      handleSetTotalPrice();
+      setTotalRequest();
     },
-    [handleRemoveGamefromWishList, handleSetTotalPrice]
+    [handleRemoveGamefromWishList, setTotalRequest]
   );
 
   const itemIsInCart = (myItem) => {
@@ -44,7 +44,7 @@ const GameList = ({
     let id = e.dataTransfer.getData("id");
     let item = wishList.find((item) => item.id === id);
     handleRemove(item);
-    handleSetTotalPrice();
+    setTotalRequest();
   };
   return (
     <div

@@ -49,7 +49,7 @@ const rootSaga = function* rootSaga() {
     fetchListSaga(),
     fetchTotalSaga(),
     addNewGameSaga(),
-    // setTotalSaga(),
+    setTotalSaga(),
     // removeGameSaga(),
   ]);
 };

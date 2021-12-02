@@ -20,6 +20,7 @@ export const SET_TOTAL_REQUEST = `${moduleName}/SET_TOTAL_REQUEST`;
 export const SET_TOTAL_PRICE = `${moduleName}/SET_TOTAL_PRICE`;
 
 const persistedData = JSON.parse(localStorage.getItem("wishList"));
+
 export const formatData = (data) => {
   //преобразование
   const formattedData = Object.entries(data).map((el) => {
@@ -69,6 +70,10 @@ export async function fetchGameListHelper() {
   const response = await fetch(
     "https://gist.githubusercontent.com/Greyewi/e6cfa49e478387a7b878e4430e1f4223/raw/d045a5c2c977cf05d05ae1a4625762e69cc891c8/game_list.json"
   );
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
   const result = await response.json();
   return result;
 }
@@ -78,12 +83,9 @@ export const fetchListSaga = function* () {
     yield take(FETCH_LIST_REQUEST);
     try {
       //wrap normal __async__ func in call
-      const data = yield call(fetchGameListHelper());
+      const data = yield call(fetchGameListHelper);
+      console.log(data);
       const formattedData = yield formatData(data);
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
 
       yield put({
         type: FETCH_GAME_LIST,
@@ -205,29 +207,18 @@ export const setTotalRequest = () => ({
   type: SET_TOTAL_REQUEST,
 });
 
-// export const setTotalSaga = function* () {
-//   while (true) {
-//     yield take(SET_TOTAL_REQUEST);
-//     const oldState = yield select((state) => state);
-//     const wishList = oldState.wishList.wishList;
-//     const total = wishList.reduce((sum, item) => sum + (item.price || 0), 0);
+export const setTotalSaga = function* () {
+  while (true) {
+    yield take(SET_TOTAL_REQUEST);
+    const oldState = yield select((state) => state);
+    const wishList = oldState.wishList.wishList;
+    const total = wishList.reduce((sum, item) => sum + (item.price || 0), 0);
 
-//     yield put({
-//       type: SET_TOTAL_PRICE,
-//       payload: total,
-//     });
-//   }
-// };
-
-export const handleSetTotalPrice = () => (dispatch, getState) => {
-  const wishList = getState().wishList.wishList;
-
-  const total = wishList.reduce((sum, item) => sum + (item.price || 0), 0);
-
-  dispatch({
-    type: SET_TOTAL_PRICE,
-    payload: total,
-  });
+    yield put({
+      type: SET_TOTAL_PRICE,
+      payload: total,
+    });
+  }
 };
 
 //Selectors (gameList, wishList)

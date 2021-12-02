@@ -42,4 +42,25 @@ describe.skip("Smoke (surface-level) tests", () => {
       expect(linkElement).toBeInTheDocument();
     });
   });
+
+  test("renders ADD, after click renders DELETE", async () => {
+    render(
+      <Provider store={store}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </Provider>
+    );
+    await waitFor(() => {
+      const linkElement = screen.getAllByText(/add/i)[0];
+      expect(linkElement).toBeInTheDocument();
+    });
+
+    fireEvent(linkElement, new Event("error"));
+
+    await waitFor(() => {
+      const linkElement = screen.getAllByText(/in wishlist/i)[0];
+      expect(linkElement).toBeInTheDocument();
+    });
+  });
 });
