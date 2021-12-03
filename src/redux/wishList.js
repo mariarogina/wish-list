@@ -87,7 +87,6 @@ export const fetchListSaga = function* () {
     try {
       //wrap normal __async__ func in call
       const data = yield call(fetchGameListHelper);
-      console.log(data);
       const formattedData = yield formatData(data);
 
       yield put({
@@ -143,7 +142,6 @@ export const addNewGameSaga = function* () {
   while (true) {
     const newItem = yield take(ADD_NEW_REQUEST);
     const oldState = yield select((state) => state);
-    console.log(oldState);
 
     if (persistedData && persistedData.length) {
       const oldWishList = JSON.parse(localStorage.getItem("wishList"));

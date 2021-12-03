@@ -77,7 +77,10 @@ const WishList = ({
             ))}
         </ul>
         <h1>
-          Total: <span className="total-price">{totalPrice} RUR</span>
+          Total:
+          <span className="total-price">
+            <span data-testid="total_price">{totalPrice}</span> RUR
+          </span>
         </h1>
         {wishList.length > 0 && (
           <div className="clearButtonWrap">

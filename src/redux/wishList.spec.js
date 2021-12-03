@@ -12,7 +12,7 @@ const wishListData = {
 };
 
 describe("wishList test", () => {
-  it.only("fetch gameList", () => {
+  it("fetch gameList", () => {
     //form object from action creator
     const actionUp = { type: FETCH_LIST_REQUEST };
     //fetchListGen acts like fetchListSaga
@@ -24,7 +24,7 @@ describe("wishList test", () => {
     // skip fetch
     //get json: compare yield to data
     expect(fetchListGen.next().value.type).toEqual("CALL");
-    expect(fetchListGen.next(wishListData).value).toEqual([wishListData["1"]])
+    expect(fetchListGen.next(wishListData).value).toEqual([wishListData["1"]]);
     //next yield
     expect(fetchListGen.next().value.type).toEqual("PUT");
   });

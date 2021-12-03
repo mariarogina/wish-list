@@ -4,9 +4,7 @@ const GameListImage = ({ item }) => {
   const [imgerror, setImgError] = useState(false);
   const handleError = () => {
     setImgError(true);
-    console.log("OnErrorEvent Presence1", imgerror);
   };
-  console.log("OnErrorEvent Presence2", imgerror);
   return (
     <div className="imgContainer">
       {!imgerror ? (
