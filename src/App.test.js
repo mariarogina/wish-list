@@ -12,29 +12,27 @@ import store from "./redux/store";
 
 //UI test
 describe.only("UI tests", () => {
-  const beforeEach = () =>
+  beforeEach(() =>
     render(
       <Provider store={store}>
         <React.StrictMode>
           <App />
         </React.StrictMode>
       </Provider>
-    );
+    )
+  );
   //render here
   test("renders wish list header", () => {
-    beforeEach();
     const linkElement = screen.getByText(/Wish List App/i);
     expect(linkElement).toBeInTheDocument();
   });
 
   test("renders RUB", () => {
-    beforeEach();
     const linkElement = screen.getByText(/rur/i);
     expect(linkElement).toBeInTheDocument();
   });
 
   test("renders ADD, after click renders DELETE", async () => {
-    beforeEach();
     let linkElement;
 
     await waitFor(() => {
@@ -54,7 +52,6 @@ describe.only("UI tests", () => {
   });
 
   test.only("renders TOTAL PRICE after item was added to wish list", async () => {
-    beforeEach();
     //test how total price changes
     let totalpriceElement;
 
